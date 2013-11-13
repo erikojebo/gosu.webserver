@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gosu.WebServer", "Gosu.WebServer\Gosu.WebServer.csproj", "{BF7549DD-DF3F-429A-99FA-8D546A77F1B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gosu.WebServer.TestServer", "Gosu.WebServer.TestServer\Gosu.WebServer.TestServer.csproj", "{1077BC8C-B608-410E-8375-FD62215D4432}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF7549DD-DF3F-429A-99FA-8D546A77F1B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7549DD-DF3F-429A-99FA-8D546A77F1B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7549DD-DF3F-429A-99FA-8D546A77F1B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7549DD-DF3F-429A-99FA-8D546A77F1B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1077BC8C-B608-410E-8375-FD62215D4432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1077BC8C-B608-410E-8375-FD62215D4432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1077BC8C-B608-410E-8375-FD62215D4432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1077BC8C-B608-410E-8375-FD62215D4432}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
