@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gosu.WebServer", "Gosu.WebS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gosu.WebServer.TestServer", "Gosu.WebServer.TestServer\Gosu.WebServer.TestServer.csproj", "{1077BC8C-B608-410E-8375-FD62215D4432}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gosu.WebServer.Specs", "Gosu.WebServer.Specs\Gosu.WebServer.Specs.csproj", "{06A27D08-2E6F-4557-9B63-CFE42BE99157}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{1077BC8C-B608-410E-8375-FD62215D4432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1077BC8C-B608-410E-8375-FD62215D4432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1077BC8C-B608-410E-8375-FD62215D4432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A27D08-2E6F-4557-9B63-CFE42BE99157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A27D08-2E6F-4557-9B63-CFE42BE99157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A27D08-2E6F-4557-9B63-CFE42BE99157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A27D08-2E6F-4557-9B63-CFE42BE99157}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
