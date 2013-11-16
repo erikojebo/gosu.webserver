@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Gosu.Commons.Extensions;
 using Gosu.WebServer.Exceptions;
@@ -37,17 +38,43 @@ namespace Gosu.WebServer
 
         public static HttpRequest Parse(string request)
         {
+            var bytes = Encoding.ASCII.GetBytes(request);
+
+            using (var stream = new MemoryStream(bytes))
+            {
+                return Parse(stream);
+            }
+        }
+
+        public static HttpRequest Parse(Stream stream)
+        {
             try
             {
-                var startLineParts = request.Split(' ');
-                var methodString = startLineParts[0];
-                var protocolVersion = startLineParts[2].Split('/')[1];
+                var headerString = stream.ReadUntilFirstBlankLineAfterContent();
+                var headerLines = headerString.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
                 var parsedRequest = new HttpRequest();
 
-                parsedRequest.Method = (HttpRequestMethod)Enum.Parse(typeof(HttpRequestMethod), methodString.Capitalize());
-                parsedRequest.Path = startLineParts[1];
-                parsedRequest.ProtocolVersion = protocolVersion;
+                ParseStartLine(headerLines[0], parsedRequest);
+
+                var currentHeaderLines = new List<string>();
+
+                for (int i = 1; i < headerLines.Length; i++)
+                {
+                    var hasNextLineLeadingWhitespace = i < headerLines.Length - 1 &&
+                                                       (headerLines[i + 1].StartsWith("\t") || headerLines[i + 1].StartsWith(" "));
+
+                    currentHeaderLines.Add(headerLines[i]);
+
+                    if (hasNextLineLeadingWhitespace)
+                    {
+                        continue;
+                    }
+
+                    var currentHeaderString = string.Join(Environment.NewLine, currentHeaderLines);
+                    parsedRequest.Headers.Add(HttpHeader.Parse(currentHeaderString));
+                    currentHeaderLines.Clear();
+                }
 
                 return parsedRequest;
             }
@@ -55,6 +82,17 @@ namespace Gosu.WebServer
             {
                 throw new InvalidHttpRequestException("An error occurred while parsing the request. The request is most likely malformed.", e);
             }
+        }
+
+        private static void ParseStartLine(string startLine, HttpRequest parsedRequest)
+        {
+            var startLineParts = startLine.Split(' ');
+            var methodString = startLineParts[0];
+            var protocolVersion = startLineParts[2].Split('/')[1];
+
+            parsedRequest.Method = (HttpRequestMethod)Enum.Parse(typeof(HttpRequestMethod), methodString.Capitalize());
+            parsedRequest.Path = startLineParts[1];
+            parsedRequest.ProtocolVersion = protocolVersion;
         }
     }
 }

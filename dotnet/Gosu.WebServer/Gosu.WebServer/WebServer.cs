@@ -71,7 +71,8 @@ namespace Gosu.WebServer
 
                             const string responseBody = "har kommer bodyn";
 
-                            var responseString = string.Format("HTTP/0.9 200 OK\r\nSet-Cookie: foo=bar\r\nDate: {0}\r\nContent-Length: {1}\r\n\r\n{2}", DateTime.Now, responseBody.Length, responseBody);
+                            var dateTime = DateTime.Now.ToHttpStandardFormat();
+                            var responseString = string.Format("HTTP/0.9 200 OK\r\nSet-Cookie: foo=bar\r\nDate: {0}\r\nConnection: close\r\nContent-Length: {1}\r\n\r\n{2}", dateTime, responseBody.Length, responseBody);
 
                             var responseBytes = Encoding.ASCII.GetBytes(responseString);
 
