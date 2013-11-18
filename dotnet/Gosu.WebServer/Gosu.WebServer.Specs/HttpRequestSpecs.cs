@@ -84,5 +84,34 @@ Header-With-Multiline-Value: Line 1
             Assert.AreEqual("1.1", request.ProtocolVersion);
             Assert.AreEqual("/path/", request.Path);
         }
+
+        [Test]
+        public void Body_is_parsed_when_content_length_header_is_specified()
+        {
+            var requestString = @"GET /path/ HTTP/1.1
+Content-Length: 11
+
+abcde fg
+h";
+
+            var request = HttpRequest.Parse(requestString);
+
+            Assert.IsNotNull(request.Body, "Request body");
+            Assert.AreEqual("abcde fg\r\nh", Encoding.ASCII.GetString(request.Body));
+        }
+        
+        [Test]
+        public void Body_which_is_longer_than_specified_by_content_length_is_cut_off()
+        {
+            var requestString = @"GET /path/ HTTP/1.1
+Content-Length: 1
+
+ab";
+
+            var request = HttpRequest.Parse(requestString);
+
+            Assert.IsNotNull(request.Body, "Request body");
+            Assert.AreEqual("a", Encoding.ASCII.GetString(request.Body));
+        }
     }
 }

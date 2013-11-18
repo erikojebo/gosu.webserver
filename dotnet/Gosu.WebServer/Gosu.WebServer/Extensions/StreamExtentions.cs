@@ -26,12 +26,13 @@ namespace Gosu.WebServer
 
                  if (!hasReachedFirstNonWhitespaceContent && isCurrentCharWhitespace)
                      continue;
-                 if (!isCurrentCharWhitespace)
+                 if (isCurrentCharWhitespace)
                  {
-                     hasReachedFirstNonWhitespaceContent = true;
+                     consecutiveWhitespace += currentChar;
                  }
                  else
                  {
+                     hasReachedFirstNonWhitespaceContent = true;
                      consecutiveWhitespace = string.Empty;
                  }
 
