@@ -24,50 +24,9 @@ namespace Gosu.WebServer
                     {
                         using (var stream = client.GetStream())
                         {
-                            string[] headerLines;
+                            var request = HttpRequest.Parse(stream);
 
-                            var buffer = new byte[1];
-                            var requestString = string.Empty;
-
-                            var request = new HttpRequest();
-
-                            while (true)
-                            {
-                                stream.Read(buffer, 0, buffer.Length);
-
-                                requestString += Encoding.ASCII.GetString(buffer);
-
-                                if (requestString.EndsWith("\r\n\r\n") || requestString.EndsWith("\n\n"))
-                                {
-                                    headerLines = requestString.Split('\n');
-
-                                    for (int i = 1; i < headerLines.Length; i++)
-                                    {
-                                        if (string.IsNullOrWhiteSpace(headerLines[i]))
-                                            continue;
-
-                                        request.Headers.Add(HttpHeader.Parse(headerLines[i]));
-                                        headerLines[i] = headerLines[i].Trim();
-                                    }
-
-                                    break;
-                                }
-                            }
-
-                            var contentLengthHeader = headerLines.FirstOrDefault(x => x.ToLower().StartsWith("content-length:"));
-
-                            if (contentLengthHeader != null)
-                            {
-                                var contentLength = int.Parse(contentLengthHeader.Split(':')[1]);
-
-                                var bodyBuffer = new byte[contentLength];
-
-                                stream.Read(bodyBuffer, 0, bodyBuffer.Length);
-
-                                request.Body = bodyBuffer;
-
-                                Console.WriteLine(request);
-                            }
+                            Console.WriteLine(request);
 
                             const string responseBody = "har kommer bodyn";
 
