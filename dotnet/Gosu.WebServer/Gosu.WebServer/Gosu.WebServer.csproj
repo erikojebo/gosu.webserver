@@ -49,6 +49,8 @@
     <Compile Include="HttpRequest.cs" />
     <Compile Include="HttpRequestMethod.cs" />
     <Compile Include="Extensions\StreamExtentions.cs" />
+    <Compile Include="HttpResponse.cs" />
+    <Compile Include="HttpStatus.cs" />
     <Compile Include="WebServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

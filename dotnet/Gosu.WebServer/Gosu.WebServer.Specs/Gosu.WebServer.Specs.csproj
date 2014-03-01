@@ -45,6 +45,7 @@
     <Compile Include="Extensions\DateTimeExtensionsSpecs.cs" />
     <Compile Include="HttpHeaderSpecs.cs" />
     <Compile Include="HttpRequestSpecs.cs" />
+    <Compile Include="HttpResponseSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
